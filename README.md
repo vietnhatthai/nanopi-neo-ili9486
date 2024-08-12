@@ -38,6 +38,10 @@ Test
 fbi -T 2 -d /dev/fb0 -a image.jpg
 ```
 
+Demo
+
+<img src="https://raw.githubusercontent.com/vietnhatthai/nanopi-neo-ili9486/main/demo.jpg" height="256"/>
+
 Hardware
 
 [NanoPi NEO Core](https://www.friendlyelec.com/index.php?route=product/product&product_id=212&search=Neo+core&description=true&category_id=0)
