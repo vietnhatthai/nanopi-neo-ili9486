@@ -66,7 +66,7 @@
 				pinctrl-names = "default";
 				pinctrl-3 = <&ads7846_pins>;
 				interrupt-parent = <&pio>;
-				interrupts = <0 0 0>; /* PA0 IRQ_TYPE_EDGE_FALLING */
+				interrupts = <0 0 2>; /* PA0 IRQ_TYPE_EDGE_FALLING */
 				pendown-gpio = <&pio 0 0 0>; /* PA0 */
 				/* driver defaults, optional */
 				ti,x-min = /bits/ 16 <0>;
