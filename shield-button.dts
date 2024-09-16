@@ -1,0 +1,23 @@
+/dts-v1/;
+/plugin/;
+
+/ {
+	compatible = "allwinner,sun8i-h3";
+	
+	fragment@0 {
+		target-path = "/";
+		__overlay__ {
+			gpio_keys: gpio-keys {
+				compatible = "gpio-keys";
+				pinctrl-names = "default";
+				
+				key_play: key_play {
+					label = "Play Button";
+					linux,code = <207>;   /* KEY_PLAY */
+					gpios = <&pio 0 7 1>; /* GPIOA7 */
+					debounce-interval = <10>;
+				};
+			};
+		};
+	};
+};
