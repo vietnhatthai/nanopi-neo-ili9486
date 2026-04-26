@@ -22,7 +22,7 @@ PA0    <-->  T_IRG
 
 This is the /boot/armbianEnv.txt
 ```
-overlays=spi1
+overlays=spi1 pwm
 user_overlays=fbtft-ili9486
 ```
 
