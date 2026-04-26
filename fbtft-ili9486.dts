@@ -76,6 +76,10 @@
 				ti,pressure-min = /bits/ 16 <0>;
 				ti,pressure-max = /bits/ 16 <0xFFFF>;
 				ti,x-plate-ohms = /bits/ 16 <400>;
+
+				ti,keep-vref-on;
+				ti,settle-delay-usec = /bits/ 16 <150>;
+				ti,penirq-recheck-delay-usecs = /bits/ 16 <50>;
 			};
 		};
 	};
