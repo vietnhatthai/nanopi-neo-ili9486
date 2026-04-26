@@ -30,8 +30,20 @@
 			};
 		};
 	};
-	
+
 	fragment@1 {
+		target-path = "/";
+		__overlay__ {
+			rpi_display_backlight: backlight {
+				compatible = "gpio-backlight";
+				gpios = <&pio 0 6 0>; 
+				default-on;
+				status = "okay";
+			};
+		};
+	};
+	
+	fragment@2 {
 		target = <&spi1>;
 		__overlay__ {
 			#address-cells = <1>;
@@ -39,36 +51,39 @@
 			status = "okay";
 			
 			pinctrl-names = "default", "default";
-			cs-gpios= <&pio 0 13 0>, <&pio 0 17 1>;
+			cs-gpios = <&pio 0 13 0>, <&pio 0 17 1>;
 			
 			opizdisplay: opiz-display@0 {
-				pinctrl-1 = <&spi1_cs0>;
-				reg = <0>; /* Chip Select 0 */
+				reg = <0>; /* CS0 */
 				compatible = "ilitek,ili9486";
-				spi-max-frequency = <125000000>;  /* 125MHZ */
-				status = "okay";
+				
 				pinctrl-names = "default";
 				pinctrl-0 = <&opiz_display_pins>;
+				pinctrl-1 = <&spi1_cs0>;
+				spi-max-frequency = <125000000>;
 				rotate = <90>;
 				bgr = <0>;
 				fps = <33>;
 				buswidth = <8>;
-				dc-gpios = <&pio 6 9 0>;      /* PG9 > */
-				reset-gpios = <&pio 0 1 0>;   /* PA1 > */
-				debug=<4>;
+				dc-gpios = <&pio 6 9 0>;      /* PG9 */
+				reset-gpios = <&pio 0 1 0>;   /* PA1 */
+				debug = <4>;
+				status = "okay";
+				
+				backlight = <&rpi_display_backlight>;
 			};
 			
 			ads7846: ads7846@1 {
-				reg = <1>; /* Chip Select 1 */
+				reg = <1>; /* CS1 */
 				compatible = "ti,ads7846";
-				spi-max-frequency = <2000000>; /* 2MHZ */
-				status = "okay";
 				pinctrl-names = "default";
+
 				pinctrl-3 = <&ads7846_pins>;
+				spi-max-frequency = <2500000>;
 				interrupt-parent = <&pio>;
-				interrupts = <0 0 2>; /* PA0 IRQ_TYPE_EDGE_FALLING */
+				interrupts = <0 0 2>;        /* IRQ_TYPE_EDGE_FALLING */
 				pendown-gpio = <&pio 0 0 1>; /* PA0 */
-				/* driver defaults, optional */
+				
 				ti,x-min = /bits/ 16 <0>;
 				ti,y-min = /bits/ 16 <0>;
 				ti,x-max = /bits/ 16 <0x0FFF>;
@@ -76,10 +91,11 @@
 				ti,pressure-min = /bits/ 16 <0>;
 				ti,pressure-max = /bits/ 16 <0xFFFF>;
 				ti,x-plate-ohms = /bits/ 16 <400>;
-
+				
 				ti,keep-vref-on;
 				ti,settle-delay-usec = /bits/ 16 <150>;
 				ti,penirq-recheck-delay-usecs = /bits/ 16 <50>;
+				status = "okay";
 			};
 		};
 	};
