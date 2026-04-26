@@ -8,7 +8,7 @@ Linux nanopineo 6.6.36-current-sunxi #1 SMP Thu Jun 27 11:49:15 UTC 2024 armv7l 
 Wiring between ILI9486 and NanoPi Neo
 
 ```
-3.3v   <-->  VCC & LED
+3.3v   <-->  VCC
 GND    <-->  GND
 PA14   <-->  SCK       & T_CLK <SPI1>
 PA16   <-->  SDO<MISO> & T_DO  <SPI1>
@@ -18,6 +18,7 @@ PA1    <-->  RESET
 PA13   <-->  CS
 PA17   <-->  T_CS
 PA0    <-->  T_IRG
+PA6    <-->  LED
 ```
 
 This is the /boot/armbianEnv.txt
