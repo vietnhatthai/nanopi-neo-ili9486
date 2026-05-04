@@ -37,7 +37,7 @@
 			rpi_display_backlight: backlight {
 				compatible = "gpio-backlight";
 				gpios = <&pio 0 6 0>; 
-				default-on;
+				/* default-on; */
 				status = "okay";
 			};
 		};
@@ -83,7 +83,7 @@
 				interrupt-parent = <&pio>;
 				interrupts = <0 0 2>;        /* IRQ_TYPE_EDGE_FALLING */
 				pendown-gpio = <&pio 0 0 1>; /* PA0 */
-				
+
 				ti,x-min = /bits/ 16 <0>;
 				ti,y-min = /bits/ 16 <0>;
 				ti,x-max = /bits/ 16 <0x0FFF>;
@@ -91,7 +91,9 @@
 				ti,pressure-min = /bits/ 16 <0>;
 				ti,pressure-max = /bits/ 16 <0xFFFF>;
 				ti,x-plate-ohms = /bits/ 16 <400>;
-				
+				touchscreen-swapped-x-y;
+				touchscreen-inverted-x;
+
 				ti,keep-vref-on;
 				ti,settle-delay-usec = /bits/ 16 <150>;
 				ti,penirq-recheck-delay-usecs = /bits/ 16 <50>;
